@@ -7,6 +7,7 @@ import * as alerting from './alerts.js';
 import * as snapshots from './exports.js';
 import * as quality from './quality.js';
 import * as reconciliation from './reconcile.js';
+import * as lag from './lag.js';
 import {event, summary, projectEvents} from './state.js';
 import {clone, digest, identifier, text} from './value.js';
 import {requireValue} from './errors.js';
@@ -126,6 +127,9 @@ export class Ledger {
   }
   async impact(input) {
     return reconciliation.correctionImpact(await this.store.read(), input);
+  }
+  async lagAnalysis(input) {
+    return lag.lagAnalysis(await this.store.read(), input);
   }
   async verify() {
     const storage = await this.store.verify();

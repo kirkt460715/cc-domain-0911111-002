@@ -168,6 +168,9 @@ export function createServer(ledger, options = {}) {
           case '/impact':
             result = await ledger.impact(input);
             break;
+          case '/lag-analysis':
+            result = await ledger.lagAnalysis(input);
+            break;
           default:
             fail('NOT_FOUND', 'Endpoint does not exist', {}, 404);
         }
